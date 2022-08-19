@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "929526377021",
+    "project_id": "ocebot2-6f7b6",
+    "storage_bucket": "ocebot2-6f7b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929526377021:android:77f8b1ddb321a609c7d854",
+        "android_client_info": {
+          "package_name": "com.example.ocebot2_0"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929526377021-9io1tso1v72apeiin2768rjqcn2q1mah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ocebot2_0",
+            "certificate_hash": "2356ec8f04e58106d5722b3fc1ab730ac8f5fbce"
+          }
+        },
+        {
+          "client_id": "929526377021-kvcbh05abnhvppgk3stvjpe883j0pi8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrMxKAm1OoBYNFCowkxVwZb_Lmo0G_G6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929526377021-kvcbh05abnhvppgk3stvjpe883j0pi8h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "929526377021-hcghea5s3dq1e71uhf4kau4dv9okm14a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ocebot20"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
