@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ocebot2_0/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ocebot2_0/models/data.dart';
+import 'package:ocebot2_0/providers/db_data_provider.dart';
 
 // this is your state, equal to [state, setState], it's index 0
 final dataPointProvider = StateNotifierProvider<DataPointNotifier, DataPoint>(
@@ -18,16 +19,7 @@ class DataPointNotifier extends StateNotifier<DataPoint> {
     DataPoint data = DataPoint();
     data.entryDateTime = state.entryDateTime;
     data.entryUnits = state.entryUnits;
-    switch (data.entryUnits) {
-      case 'oz':
-        data.entryWeight = double.parse(weight) * 28.3495;
-        break;
-      case 'lbs':
-        data.entryWeight = double.parse(weight) * 453.592;
-        break;
-      default:
-        data.entryWeight = double.parse(weight);
-    }
+    data.entryWeight = weight;
     state = data;
   }
 
@@ -51,14 +43,14 @@ class DataPointNotifier extends StateNotifier<DataPoint> {
     DataPoint data = DataPoint();
     data.entryDateTime = DateTime.now();
     data.entryUnits = 'g';
-    data.entryWeight = 0;
+    data.entryWeight = '';
     state = data;
   }
 }
 
 class DataPoint {
   DateTime entryDateTime = DateTime.now();
-  double entryWeight = 0;
+  String entryWeight = '';
   String entryUnits = 'g';
 
   static String formatDate(date) {
@@ -73,6 +65,17 @@ class EntryForm extends ConsumerWidget {
   
   final db = FirebaseFirestore.instance
   .collection("dummy_weights");
+
+  double sendWeight(String units, String weight) {
+    switch (units) {
+      case 'oz':
+        return double.parse((double.parse(weight) * 28.3495).toStringAsFixed(2));
+      case 'lbs':
+        return double.parse((double.parse(weight) * 453.592).toStringAsFixed(2));
+      default:
+        return double.parse((double.parse(weight).toStringAsFixed(2)));
+    }
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -96,14 +99,15 @@ class EntryForm extends ConsumerWidget {
               content: Text(
                   'Added Entry: ${ref.read(dataPointProvider).entryWeight}${ref.read(dataPointProvider).entryUnits} on ${ref.read(dataPointProvider).entryDateTime}'),
             );
-            ref.watch(dataPointProvider).entryWeight > 0
+            ref.watch(dataPointProvider).entryWeight != ''
                 ? {
                     await db.add({
                       "date" : ref.read(dataPointProvider).entryDateTime,
-                      "weight" : ref.read(dataPointProvider).entryWeight 
+                      "weight" : sendWeight(ref.read(dataPointProvider).entryUnits, ref.read(dataPointProvider).entryWeight)
                     }),
                     Navigator.pop(context, 'OK'),
-                    ScaffoldMessenger.of(context).showSnackBar(snackbar)
+                    ScaffoldMessenger.of(context).showSnackBar(snackbar),
+                    ref.read(dbDataProvider.notifier).state = await Data.getDataFromFirebase()
                   }
                 : null;
           },
@@ -182,7 +186,6 @@ class EntryForm extends ConsumerWidget {
                           ref
                               .watch(dataPointProvider.notifier)
                               .changeWeight(text);
-                          print(ref.read(dataPointProvider).entryWeight);
                         },
                       ),
                     ),

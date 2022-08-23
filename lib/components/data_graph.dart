@@ -37,8 +37,8 @@ class DataGraph extends StatelessWidget {
                 )
               )
             ),
-            minY: 10,
-            maxY: 90,
+            minY: 40,
+            maxY: 160,
             borderData: FlBorderData(show: false),
             lineBarsData: [
               Data.DataListToCoordinates(data)

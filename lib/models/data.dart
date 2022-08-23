@@ -18,16 +18,17 @@ class Data {
     .collection("dummy_weights")
     .orderBy('date').get();
 
-    db.docs.map((e) => {
-      returnList.add(
-        Data(
-          e.get('date'),
-          e.get('weight'), 
-          'g'
-        )
-      )
+    print(db.docs.length);
+
+    db.docs.forEach((doc) {
+      DateTime date = doc.get('date').toDate();
+      var data = Data(
+        date,
+        doc.get('weight'), 
+        'g'
+      );
+      returnList.add(data);
     });
-    
     return returnList;
   }
 
@@ -44,31 +45,6 @@ class Data {
       monthSum += months[i];
     }
     return monthSum + day;
-  }
-
-  static List<Data> generateRandomDataList(int dataPoints) {
-    List<Data> dataList = []; 
-    int previousYear = 2022;
-    int previousMonth = 1;
-    int previousDay = 1;
-    double previousWeight = 50.0;
-
-    for (var i = 0; i < dataPoints; i++) {
-      previousWeight = previousWeight < 30 || previousWeight > 120 ? generateRandomInt(50, 80).toDouble() : previousWeight + generateRandomInt(-5, 5);
-      previousDay = previousDay + generateRandomInt(2, 15);
-      if (previousDay > 27) {
-        previousMonth++;
-        previousDay = 1;
-      }
-      if (previousMonth > 11) {
-        previousYear++;
-        previousMonth = 1;
-      }
-      dataList.add(
-        Data(DateTime(previousYear, previousMonth, previousDay), previousWeight, 'g')
-      );
-    }
-    return dataList;
   }
 
   static LineChartBarData DataListToCoordinates(List<Data> dataList) {
