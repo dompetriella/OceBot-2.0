@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class OcebotTheme {
 
-  static Color primaryColor = Color(0xff3F612D);
-  static Color secondaryColor = Color(0xff96BE8C);
-  static Color tertiaryColor = Color(0xffACECA1);
-  static Color backgroundColor = Color(0xffC9F2C7);
-  static Color accentColor = Color(0xffC36F09);
+  static Color primaryColor = const Color(0xff3F612D);
+  static Color secondaryColor = const Color(0xff96BE8C);
+  static Color tertiaryColor = const Color(0xffACECA1);
+  static Color backgroundColor = const Color(0xffC9F2C7);
+  static Color accentColor = const Color(0xffC36F09);
   static Color textColor = Colors.black;
 
   static List<BoxShadow> pixelShadow = [
@@ -113,7 +113,7 @@ class OcebotTheme {
       ),
       scaffoldBackgroundColor: backgroundColor,
       buttonTheme: ButtonThemeData( // 4
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
         buttonColor: accentColor,
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(

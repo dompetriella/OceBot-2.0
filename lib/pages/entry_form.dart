@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ocebot2_0/providers/filter_provider.dart';
+import 'package:ocebot2_0/services/firebase.dart';
 import 'package:ocebot2_0/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -62,16 +64,17 @@ class EntryForm extends ConsumerWidget {
   TextEditingController textEditingController = TextEditingController();
   double displayWidth = 350;
   double displayHeight = 200;
-  
-  final db = FirebaseFirestore.instance
-  .collection("dummy_weights");
+
+  final db = FirebaseFirestore.instance.collection("dummy_weights");
 
   double sendWeight(String units, String weight) {
     switch (units) {
       case 'oz':
-        return double.parse((double.parse(weight) * 28.3495).toStringAsFixed(2));
+        return double.parse(
+            (double.parse(weight) * 28.3495).toStringAsFixed(2));
       case 'lbs':
-        return double.parse((double.parse(weight) * 453.592).toStringAsFixed(2));
+        return double.parse(
+            (double.parse(weight) * 453.592).toStringAsFixed(2));
       default:
         return double.parse((double.parse(weight).toStringAsFixed(2)));
     }
@@ -102,12 +105,16 @@ class EntryForm extends ConsumerWidget {
             ref.watch(dataPointProvider).entryWeight != ''
                 ? {
                     await db.add({
-                      "date" : ref.read(dataPointProvider).entryDateTime,
-                      "weight" : sendWeight(ref.read(dataPointProvider).entryUnits, ref.read(dataPointProvider).entryWeight)
+                      "date": ref.read(dataPointProvider).entryDateTime,
+                      "weight": sendWeight(
+                          ref.read(dataPointProvider).entryUnits,
+                          ref.read(dataPointProvider).entryWeight)
                     }),
                     Navigator.pop(context, 'OK'),
                     ScaffoldMessenger.of(context).showSnackBar(snackbar),
-                    ref.read(dbDataProvider.notifier).state = await Data.getDataFromFirebase()
+                    ref.read(dbDataProvider.notifier).state =
+                        await FirebaseService.getDataFromFirebase(
+                            ref.watch(filterMonthsIntProvider))
                   }
                 : null;
           },

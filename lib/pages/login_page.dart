@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ocebot2_0/firebase_options.dart';
 import 'package:ocebot2_0/providers/auth_provider.dart';
 import 'package:ocebot2_0/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
