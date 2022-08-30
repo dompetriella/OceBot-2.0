@@ -1,6 +1,6 @@
 # ocebot2_0
 
-Improved version of the old ocebot app.  Keeps track of weight variations for Ocelot (hognose snake)
+Improved version of the old ocebot app made in Flutter.  Keeps track of weight variations for Ocelot (hognose snake)
 
 Mostly a proof of concept for using Riverpod and Firestore, but it's a fun little thing to practice UX
 
