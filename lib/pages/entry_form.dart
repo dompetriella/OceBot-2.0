@@ -65,7 +65,7 @@ class EntryForm extends ConsumerWidget {
   double displayWidth = 350;
   double displayHeight = 200;
 
-  final db = FirebaseFirestore.instance.collection("dummy_weights");
+  final db = FirebaseFirestore.instance.collection("weights");
 
   double sendWeight(String units, String weight) {
     switch (units) {

@@ -9,7 +9,7 @@ class FirebaseService {
     var monthsAgoDate = Data.getDateInPastMonthsAgo(filterInt);
 
     final db = await FirebaseFirestore.instance
-        .collection("dummy_weights")
+        .collection("weights")
         .orderBy('date')
         .where('date', isGreaterThan: monthsAgoDate)
         .get();

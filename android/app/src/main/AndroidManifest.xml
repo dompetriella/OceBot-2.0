@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ocebot2_0">
    <application
-        android:label="ocebot2_0"
+        android:label="OceBot"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
