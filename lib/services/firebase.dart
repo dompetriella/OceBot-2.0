@@ -1,11 +1,9 @@
 import 'package:ocebot2_0/models/data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ocebot2_0/providers/db_data_provider.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ocebot2_0/providers/filter_provider.dart';
+import 'package:ocebot2_0/models/firebaseData.dart';
 
 class FirebaseService {
-  static Future<List<Data>> getDataFromFirebase(int filterInt) async {
+  static Future<FirebaseData> getDataFromFirebase(int filterInt) async {
     List<Data> returnList = [];
 
     var monthsAgoDate = Data.getDateInPastMonthsAgo(filterInt);
@@ -18,9 +16,32 @@ class FirebaseService {
 
     db.docs.forEach((doc) {
       DateTime date = doc.get('date').toDate();
-      var data = Data(date, doc.get('weight'), 'g');
+      double weight = doc.get('weight');
+      var data = Data(date, weight, 'g');
       returnList.add(data);
     });
-    return returnList;
+
+    var graphMin = returnList[0].weight;
+    var graphMax = returnList[0].weight;
+
+    for (var i = 0; i < returnList.length; i++) {
+      var testMin = returnList[i].weight;
+      var testMax = returnList[i].weight;
+
+      if (testMin < graphMin) {
+        testMin = graphMin;
+      }
+
+      if (testMax > graphMax) {
+        graphMax = testMax;
+      }
+    }
+
+    FirebaseData returnData = FirebaseData(
+        graphMin: (graphMin - 10).toInt(),
+        graphMax: (graphMax + 10).toInt(),
+        dataFromFirebase: returnList);
+
+    return returnData;
   }
 }

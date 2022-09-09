@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:ocebot2_0/models/data.dart';
+import 'package:ocebot2_0/providers/db_data_provider.dart';
 import 'package:ocebot2_0/themes.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DataGraph extends StatelessWidget {
+class DataGraph extends ConsumerWidget {
   final List<Data> data;
 
   const DataGraph({Key? key, required this.data}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 12.0, 0, 8.0),
       child: LineChart(LineChartData(
@@ -35,8 +37,8 @@ class DataGraph extends StatelessWidget {
                 interval: 1,
                 getTitlesWidget: bottomTitleWidgets,
               ))),
-          minY: 30,
-          maxY: 130,
+          minY: ref.watch(minHeightGraphProvider).toDouble(),
+          maxY: ref.watch(maxHeightGraphProvider).toDouble(),
           borderData: FlBorderData(show: false),
           lineTouchData: LineTouchData(
               touchTooltipData: LineTouchTooltipData(

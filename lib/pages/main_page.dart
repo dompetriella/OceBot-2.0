@@ -76,15 +76,18 @@ class MainPageLoader extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(dbDataFutureProvider).when(
         data: (dbData) {
+          ref.watch(minHeightGraphProvider.notifier).state = dbData.graphMin;
+          ref.watch(maxHeightGraphProvider.notifier).state = dbData.graphMax;
           return Column(
             children: [
               Container(
                   width: MediaQuery.of(context).size.width * .85,
                   height: MediaQuery.of(context).size.height * .35,
                   child: DataGraph(
-                      data: ref.watch(dbDataProvider).isNotEmpty
-                          ? ref.watch(dbDataProvider)
-                          : dbData)),
+                      data:
+                          ref.watch(dbDataProvider).dataFromFirebase.isNotEmpty
+                              ? ref.watch(dbDataProvider).dataFromFirebase
+                              : dbData.dataFromFirebase)),
               const Center(
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 12.0),
@@ -96,9 +99,9 @@ class MainPageLoader extends ConsumerWidget {
                 child: TableHeader(),
               ),
               DataFirebaseTable(
-                  data: ref.watch(dbDataProvider).isNotEmpty
-                      ? ref.watch(dbDataProvider)
-                      : dbData)
+                  data: ref.watch(dbDataProvider).dataFromFirebase.isNotEmpty
+                      ? ref.watch(dbDataProvider).dataFromFirebase
+                      : dbData.dataFromFirebase)
             ],
           );
         },
