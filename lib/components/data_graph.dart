@@ -20,7 +20,7 @@ class DataGraph extends ConsumerWidget {
                 sideTitles: SideTitles(
                   showTitles: true,
                   getTitlesWidget: leftTitleWidgets,
-                  reservedSize: 50,
+                  reservedSize: 40,
                   interval: 1,
                 ),
               ),

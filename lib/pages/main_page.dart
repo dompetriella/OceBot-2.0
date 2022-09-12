@@ -14,54 +14,65 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          title: Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 10,
-                  width: 10,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: OcebotTheme.accentColor),
+              GestureDetector(
+                onTap: () => showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) => EntryForm()),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: OcebotTheme.accentColor,
+                      boxShadow: [
+                        BoxShadow(
+                            spreadRadius: 2, color: OcebotTheme.secondaryColor),
+                        BoxShadow(spreadRadius: 3, color: Colors.white),
+                        BoxShadow(
+                            spreadRadius: 2, color: OcebotTheme.primaryColor),
+                      ],
+                    ),
+                    width: MediaQuery.of(context).size.width * .08,
+                    height: MediaQuery.of(context).size.height * .04,
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
-              const Text("Ocebot"),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 10,
-                  width: 10,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: OcebotTheme.accentColor),
-                ),
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 10,
+                      width: 10,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color: OcebotTheme.accentColor),
+                    ),
+                  ),
+                  const Text("Ocebot"),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 10,
+                      width: 10,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color: OcebotTheme.accentColor),
+                    ),
+                  ),
+                ],
+              )
             ],
           )),
       body: const SafeArea(
         child: MainPageLoader(),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration:
-              BoxDecoration(border: Border.all(color: Colors.white, width: 2)),
-          child: FloatingActionButton(
-            shape: const RoundedRectangleBorder(),
-            onPressed: () => showDialog(
-                barrierDismissible: false,
-                context: context,
-                builder: (BuildContext context) => EntryForm()),
-            tooltip: 'Create New Entry',
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 40,
-            ),
-          ),
-        ),
       ),
     );
   }
