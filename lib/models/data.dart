@@ -17,7 +17,7 @@ class Data {
   static int convertMonthAndDayToYearDay(int month, int day) {
     List<int> months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     int monthSum = 0;
-    for (var i = 0; i < month; i++) {
+    for (var i = 0; i < month-1; i++) {
       monthSum += months[i];
     }
     return monthSum + day;
