@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ocebot2_0/providers/auth_provider.dart';
-import 'package:ocebot2_0/providers/version.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ocebot2_0/version.dart';
 import 'package:ocebot2_0/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'main_page.dart';
@@ -28,12 +28,12 @@ class LoginScreen extends ConsumerWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              color: OcebotTheme.primaryColor,
-              child: Center(
-                child: Container(
+        child: Container(
+          color: OcebotTheme.primaryColor,
+          child: Center(
+            child: Stack(
+              children: [
+                Container(
                   decoration: BoxDecoration(boxShadow: OcebotTheme.pixelShadow),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(
@@ -75,19 +75,13 @@ class LoginScreen extends ConsumerWidget {
                     ),
                   ),
                 ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
+                Text(
                   ref.read(version),
-                  style: OcebotTheme.lightTheme.primaryTextTheme.displaySmall,
-                ),
-              ),
+                  style: TextStyle(color: OcebotTheme.primaryColor),
+                )
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
