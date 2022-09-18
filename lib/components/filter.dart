@@ -5,6 +5,7 @@ import 'package:ocebot2_0/themes.dart';
 import 'package:ocebot2_0/providers/filter_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ocebot2_0/services/firebase.dart';
+import 'package:flutter_animate/animate.dart';
 
 class Filter extends ConsumerWidget {
   const Filter({

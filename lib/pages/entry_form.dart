@@ -5,8 +5,8 @@ import 'package:ocebot2_0/services/firebase.dart';
 import 'package:ocebot2_0/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ocebot2_0/models/data.dart';
 import 'package:ocebot2_0/providers/db_data_provider.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 // this is your state, equal to [state, setState], it's index 0
 final dataPointProvider = StateNotifierProvider<DataPointNotifier, DataPoint>(
@@ -204,7 +204,16 @@ class EntryForm extends ConsumerWidget {
           ],
         ),
       ),
-    );
+    )
+        .animate()
+        .slide(
+          curve: Curves.decelerate,
+        )
+        .scale(
+          begin: 0.1,
+        )
+        .then()
+        .scale(begin: 1.1);
   }
 }
 
