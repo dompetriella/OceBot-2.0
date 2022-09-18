@@ -3,7 +3,6 @@ import 'package:ocebot2_0/providers/auth_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ocebot2_0/version.dart';
 import 'package:ocebot2_0/themes.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'main_page.dart';
 
 class LoginScreen extends ConsumerWidget {
