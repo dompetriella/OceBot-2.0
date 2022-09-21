@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import '../themes.dart';
 import 'entry_form.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,7 +7,6 @@ import 'package:ocebot2_0/components/data_table.dart';
 import 'package:ocebot2_0/components/filter.dart';
 import 'package:ocebot2_0/components/table_header.dart';
 import 'package:ocebot2_0/providers/db_data_provider.dart';
-import 'package:flutter_animate/animate.dart';
 
 class MainPage extends StatelessWidget {
   @override
