@@ -21,21 +21,19 @@ class FirebaseService {
       returnList.add(data);
     });
 
-    double graphMin = 70;
-    double graphMax = 120;
+    var graphMin = returnList[0].weight;
+    var graphMax = returnList[0].weight;
 
-    if (returnList.length > 0) {
-      for (var i = 0; i < returnList.length; i++) {
-        var testMin = returnList[i].weight;
-        var testMax = returnList[i].weight;
+    for (var i = 0; i < returnList.length; i++) {
+      var testMin = returnList[i].weight;
+      var testMax = returnList[i].weight;
 
-        if (testMin < graphMin) {
-          testMin = graphMin;
-        }
+      if (testMin < graphMin) {
+        testMin = graphMin;
+      }
 
-        if (testMax > graphMax) {
-          graphMax = testMax;
-        }
+      if (testMax > graphMax) {
+        graphMax = testMax;
       }
     }
 
