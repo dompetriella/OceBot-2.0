@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ocebot2_0/providers/db_data_provider.dart';
 import 'package:ocebot2_0/themes.dart';
@@ -17,17 +18,18 @@ class Filter extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        GestureDetector(
-          onTap: () {
-            FirebaseService.getDataFromFirebase(
-                    ref.read(filterMonthsIntProvider))
-                .then((value) =>
-                    ref.watch(dbDataProvider.notifier).state = value);
-          },
-          child: Container(
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(color: OcebotTheme.accentColor, offset: Offset(0, 5))
-            ]),
+        Container(
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(color: OcebotTheme.accentColor, offset: Offset(0, 5))
+          ]),
+          child: Bounce(
+            duration: Duration(milliseconds: 500),
+            onPressed: () {
+              FirebaseService.getDataFromFirebase(
+                      ref.read(filterMonthsIntProvider))
+                  .then((value) =>
+                      ref.watch(dbDataProvider.notifier).state = value);
+            },
             child: Container(
               decoration: BoxDecoration(
                   color: OcebotTheme.accentColor,
@@ -60,8 +62,9 @@ class Filter extends ConsumerWidget {
                   BoxShadow(
                       color: OcebotTheme.secondaryColor, offset: Offset(0, 5))
                 ]),
-                child: GestureDetector(
-                  onTap: () =>
+                child: Bounce(
+                  duration: Duration(milliseconds: 200),
+                  onPressed: () =>
                       ref.watch(filterMonthsIntProvider.notifier).state > 1
                           ? ref.watch(filterMonthsIntProvider.notifier).state--
                           : ref.watch(filterMonthsIntProvider.notifier).state =
@@ -82,8 +85,9 @@ class Filter extends ConsumerWidget {
               decoration: BoxDecoration(boxShadow: [
                 BoxShadow(color: OcebotTheme.primaryColor, offset: Offset(0, 5))
               ]),
-              child: GestureDetector(
-                onTap: () =>
+              child: Bounce(
+                duration: Duration(milliseconds: 200),
+                onPressed: () =>
                     ref.watch(filterMonthsIntProvider.notifier).state < 6
                         ? ref.watch(filterMonthsIntProvider.notifier).state++
                         : ref.watch(filterMonthsIntProvider.notifier).state = 6,

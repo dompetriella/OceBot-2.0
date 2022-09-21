@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ocebot2_0/providers/filter_provider.dart';
 import 'package:ocebot2_0/services/firebase.dart';
@@ -147,8 +148,9 @@ class EntryForm extends ConsumerWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () {
+                  Bounce(
+                    duration: Duration(milliseconds: 200),
+                    onPressed: () {
                       showDatePicker(
                               builder: (context, child) {
                                 return Theme(
