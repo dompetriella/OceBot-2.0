@@ -187,6 +187,8 @@ class EntryForm extends ConsumerWidget {
                     child: SizedBox(
                       width: 100,
                       child: TextField(
+                        keyboardType:
+                            TextInputType.numberWithOptions(decimal: true),
                         style: OcebotTheme
                             .lightTheme.primaryTextTheme.displayMedium,
                         textAlign: TextAlign.center,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OcebotTheme {
-
   static Color primaryColor = const Color(0xff3F612D);
   static Color secondaryColor = const Color(0xff96BE8C);
   static Color tertiaryColor = const Color(0xffACECA1);
@@ -15,110 +14,85 @@ class OcebotTheme {
       color: OcebotTheme.tertiaryColor,
       spreadRadius: 0,
       blurRadius: 0,
-      offset:
-          Offset(-4, 1), // changes position of shadow
+      offset: Offset(-4, 1), // changes position of shadow
     ),
     BoxShadow(
       color: OcebotTheme.tertiaryColor,
       spreadRadius: 0,
       blurRadius: 0,
-      offset:
-          Offset(4, 0), // changes position of shadow
+      offset: Offset(4, 0), // changes position of shadow
     ),
     BoxShadow(
       color: OcebotTheme.tertiaryColor,
       spreadRadius: 0,
       blurRadius: 0,
-      offset:
-          Offset(1, -4), // changes position of shadow
+      offset: Offset(1, -4), // changes position of shadow
     ),
     BoxShadow(
       color: OcebotTheme.tertiaryColor,
       spreadRadius: 0,
       blurRadius: 0,
-      offset:
-          Offset(0, 4), // changes position of shadow
+      offset: Offset(0, 4), // changes position of shadow
     ),
     BoxShadow(
       color: OcebotTheme.secondaryColor,
       spreadRadius: 0,
       blurRadius: 0,
-      offset:
-          Offset(-2, 1), // changes position of shadow
+      offset: Offset(-2, 1), // changes position of shadow
     ),
     BoxShadow(
       color: OcebotTheme.secondaryColor,
       spreadRadius: 0,
       blurRadius: 0,
-      offset:
-          Offset(2, 0), // changes position of shadow
+      offset: Offset(2, 0), // changes position of shadow
     ),
     BoxShadow(
       color: OcebotTheme.secondaryColor,
       spreadRadius: 0,
       blurRadius: 0,
-      offset:
-          Offset(1, -2), // changes position of shadow
+      offset: Offset(1, -2), // changes position of shadow
     ),
     BoxShadow(
       color: OcebotTheme.secondaryColor,
       spreadRadius: 0,
       blurRadius: 0,
-      offset:
-          Offset(0, 2), // changes position of shadow
+      offset: Offset(0, 2), // changes position of shadow
     ),
   ];
 
-  static ThemeData get lightTheme 
-  { //1
-    return ThemeData( //2
-      primaryColor: primaryColor,
-      backgroundColor: backgroundColor,
-      colorScheme: ColorScheme.light(
-        primary: primaryColor,
-        secondary: backgroundColor,
-        onSurface: primaryColor,
-        surface: backgroundColor
-      ),
-      dialogBackgroundColor: backgroundColor,
-      appBarTheme: AppBarTheme(
-        backgroundColor: primaryColor,
-        foregroundColor: backgroundColor,
-        titleTextStyle: GoogleFonts.vt323(
-          color: backgroundColor,
-          fontSize: 30
-        )
-        
-      ),
-      primaryTextTheme: TextTheme(
-        headlineLarge: GoogleFonts.vt323(
-          fontSize: 80,
-          color: primaryColor,
-          textStyle: TextStyle(
-            shadows: pixelShadow
-          )
+  static ThemeData get lightTheme {
+    //1
+    return ThemeData(
+        //2
+        primaryColor: primaryColor,
+        backgroundColor: backgroundColor,
+        colorScheme: ColorScheme.light(
+            primary: primaryColor,
+            secondary: backgroundColor,
+            onSurface: primaryColor,
+            surface: backgroundColor),
+        dialogBackgroundColor: backgroundColor,
+        appBarTheme: AppBarTheme(
+            backgroundColor: primaryColor,
+            foregroundColor: backgroundColor,
+            titleTextStyle:
+                GoogleFonts.vt323(color: backgroundColor, fontSize: 30)),
+        primaryTextTheme: TextTheme(
+          headlineLarge: GoogleFonts.vt323(
+              fontSize: 80,
+              color: primaryColor,
+              textStyle: TextStyle(shadows: pixelShadow)),
+          headline1: GoogleFonts.vt323(fontSize: 40, color: primaryColor),
+          headline2: GoogleFonts.vt323(fontSize: 30, color: primaryColor),
+          headline3: GoogleFonts.vt323(fontSize: 30, color: backgroundColor),
         ),
-        headline1: GoogleFonts.vt323(
-          fontSize: 40,
-          color: primaryColor
+        scaffoldBackgroundColor: backgroundColor,
+        buttonTheme: ButtonThemeData(
+          // 4
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+          buttonColor: accentColor,
         ),
-        headline2: GoogleFonts.vt323(
-          fontSize: 30,
-          color: primaryColor
-        ),
-        headline3: GoogleFonts.vt323(
-          fontSize: 30,
-          color: backgroundColor
-        ),
-      ),
-      scaffoldBackgroundColor: backgroundColor,
-      buttonTheme: ButtonThemeData( // 4
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-        buttonColor: accentColor,
-      ),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: accentColor
-      )
-    );
+        floatingActionButtonTheme:
+            FloatingActionButtonThemeData(backgroundColor: accentColor));
   }
 }
