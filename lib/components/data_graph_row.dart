@@ -7,62 +7,62 @@ class DataGraphRow extends StatelessWidget {
   final Data data;
   final double percentChange;
   final int sign;
-  const DataGraphRow({Key? key, required this.data, required this.percentChange, required this.sign}) : super(key: key);
+  const DataGraphRow(
+      {Key? key,
+      required this.data,
+      required this.percentChange,
+      required this.sign})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(6.0, 6.0, 6.0, 0),
-        child: Container(
-          height: 40,
-          decoration: BoxDecoration(
+      padding: const EdgeInsets.fromLTRB(6.0, 6.0, 6.0, 0),
+      child: Container(
+        height: 40,
+        decoration: BoxDecoration(
             boxShadow: OcebotTheme.pixelShadow,
-            color: OcebotTheme.primaryColor
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: Center(
-                  child: Container(
-                      child: Text(
-                        '${data.dateTime.month.toString()}/${data.dateTime.day.toString()}',
-                        style: GoogleFonts.vt323(
-                          textStyle: TextStyle(color: Colors.white, fontSize: 30)
-                        ),
-                      )
-                  ),
-                ),
+            color: OcebotTheme.primaryColor),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Expanded(
+              child: Center(
+                child: Container(
+                    child: Text(
+                  '${data.dateTime.month.toString()}/${data.dateTime.day.toString()}/${data.dateTime.year.toString().substring(2)}',
+                  style: GoogleFonts.vt323(
+                      textStyle: TextStyle(color: Colors.white, fontSize: 26)),
+                )),
               ),
-
-              Expanded(
-                child: Center(
-                  child: Container(
-                      child: Text(
-                        '${data.weight}',
-                        style: GoogleFonts.vt323(
-                          textStyle: TextStyle(color: Colors.white, fontSize: 30)
-                        ),
-                      )
-                  ),
-                ),
+            ),
+            Expanded(
+              child: Center(
+                child: Container(
+                    child: Text(
+                  '${data.weight}',
+                  style: GoogleFonts.vt323(
+                      textStyle: TextStyle(color: Colors.white, fontSize: 26)),
+                )),
               ),
-
-              Expanded(
-                child: Center(
-                  child: Container(
-                      child: Text(
-                        '$percentChange%',
-                        style: GoogleFonts.vt323(
-                          textStyle: TextStyle(color: sign < 0 ? OcebotTheme.accentColor : OcebotTheme.backgroundColor, fontSize: 30)
-                        ),
-                      )
-                    ),
-                ),
+            ),
+            Expanded(
+              child: Center(
+                child: Container(
+                    child: Text(
+                  '$percentChange%',
+                  style: GoogleFonts.vt323(
+                      textStyle: TextStyle(
+                          color: sign < 0
+                              ? OcebotTheme.accentColor
+                              : OcebotTheme.backgroundColor,
+                          fontSize: 26)),
+                )),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
   }
 }

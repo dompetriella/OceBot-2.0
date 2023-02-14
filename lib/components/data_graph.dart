@@ -78,6 +78,9 @@ Widget leftTitleWidgets(double value, TitleMeta meta) {
 Widget bottomTitleWidgets(double value, TitleMeta meta) {
   var style = GoogleFonts.vt323(fontSize: 22, color: OcebotTheme.primaryColor);
   Widget text;
+  if (value > 365) {
+    value = value - 365;
+  }
   switch (value.toInt()) {
     case 1:
       text = Text('JAN', style: style);

@@ -14,11 +14,14 @@ class Data {
     return min + Random().nextInt(max - min);
   }
 
-  static int convertMonthAndDayToYearDay(int month, int day) {
+  static int convertMonthAndDayToYearDay(int year, int month, int day) {
     List<int> months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     int monthSum = 0;
-    for (var i = 0; i < month-1; i++) {
+    for (var i = 0; i < month - 1; i++) {
       monthSum += months[i];
+    }
+    if (year == DateTime.now().year) {
+      monthSum += 365;
     }
     return monthSum + day;
   }
@@ -32,7 +35,8 @@ class Data {
   static LineChartBarData DataListToCoordinates(List<Data> dataList) {
     List<FlSpot> flSpots = dataList
         .map((data) => FlSpot(
-            convertMonthAndDayToYearDay(data.dateTime.month, data.dateTime.day)
+            convertMonthAndDayToYearDay(
+                    data.dateTime.year, data.dateTime.month, data.dateTime.day)
                 .toDouble(),
             data.weight))
         .toList();
